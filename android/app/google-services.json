@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "653470262462",
+    "firebase_url": "https://bunkmeter-5ff04.firebaseio.com",
+    "project_id": "bunkmeter-5ff04",
+    "storage_bucket": "bunkmeter-5ff04.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:653470262462:android:092adea3d54d5bd2ef6aef",
+        "android_client_info": {
+          "package_name": "com.bunk_meter.bunkmeter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "653470262462-k34l8nu3ng6dd5ha5bs5qhpu7j9vkjb1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-z7pJiS1iYTfPoPgqXOGF2Ii89PkvQ04"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "653470262462-k34l8nu3ng6dd5ha5bs5qhpu7j9vkjb1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
