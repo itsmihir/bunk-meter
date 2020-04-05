@@ -1,5 +1,5 @@
 import 'package:bunkmeter/models/enum.dart';
-import '../widget/alert_dialog.dart';
+import '../widget/alert/alert_dialog.dart';
 import '../widget/circular_image_view.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';

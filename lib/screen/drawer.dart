@@ -1,5 +1,5 @@
 import 'package:bunkmeter/provider/auth.dart';
-import 'package:bunkmeter/screen/addcourse.dart';
+import 'package:bunkmeter/screen/mycourse.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -36,6 +36,7 @@ class MyDrawer extends StatelessWidget {
           leading: Icon(
             MdiIcons.circleEditOutline,
             size: 26,
+            color: Colors.blue,
           ),
           title: Text(
             'My Courses',
@@ -49,6 +50,7 @@ class MyDrawer extends StatelessWidget {
           leading: Icon(
             MdiIcons.databaseCheck,
             size: 26,
+            color: Colors.orange,
           ),
           title: Text('Statistics',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
@@ -58,22 +60,23 @@ class MyDrawer extends StatelessWidget {
           leading: Icon(
             MdiIcons.bell,
             size: 26,
+            color: Colors.red,
           ),
           title: Text('Notifications',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           onTap: () {},
         ),
-        ListTile(
-          leading: Icon(
-            MdiIcons.logout,
-            size: 26,
-          ),
-          title: Text('Logout',
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          onTap: () {
-            Provider.of<Auth>(context, listen: false).logOut();
-          },
-        ),
+        // ListTile(
+        //   leading: Icon(
+        //     MdiIcons.logout,
+        //     size: 26,
+        //   ),
+        // title: Text('Logout',
+        //     style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+        // onTap: () {
+        //   Provider.of<Auth>(context, listen: false).logOut();
+        // },
+        //  ),
       ],
     ));
   }

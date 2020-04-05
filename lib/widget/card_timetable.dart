@@ -29,28 +29,37 @@ class TimeTableCard extends StatelessWidget {
                   ),
                 ),
               ),
-              title: Text(
-                subject,
-                style: TextStyle(color: Colors.blue, fontFamily: 'OpenSans'),
-              ),
-              subtitle: Text(
-                '$mode | $id',
-                style: TextStyle(fontFamily: 'Quicksand'),
-              ),
-              trailing: Container(
-                height: 40,
-                child: FloatingActionButton(
-                  onPressed: null,
-                  heroTag: time,
-                  backgroundColor: (percentage < 50)
-                      ? Colors.red
-                      : (percentage < 75)
-                          ? Colors.red[300]
-                          : (percentage < 80) ? Colors.blue : Colors.green,
-                  child:
-                      FittedBox(fit: BoxFit.fill, child: Text('$percentage%')),
-                ),
-              ),
+              title: id == 'null'
+                  ? Text('')
+                  : Text(
+                      subject,
+                      style:
+                          TextStyle(color: Colors.blue, fontFamily: 'OpenSans'),
+                    ),
+              subtitle: id == 'null'
+                  ? Text('')
+                  : Text(
+                      '$mode | $id',
+                      style: TextStyle(fontFamily: 'Quicksand'),
+                    ),
+              trailing: id == 'null'
+                  ? Text('')
+                  : Container(
+                      height: 40,
+                      child: FloatingActionButton(
+                        onPressed: null,
+                        heroTag: time,
+                        backgroundColor: (percentage < 50)
+                            ? Colors.red
+                            : (percentage < 75)
+                                ? Colors.red[300]
+                                : (percentage < 80)
+                                    ? Colors.blue
+                                    : Colors.green,
+                        child: FittedBox(
+                            fit: BoxFit.fill, child: Text('$percentage%')),
+                      ),
+                    ),
             )));
   }
 }

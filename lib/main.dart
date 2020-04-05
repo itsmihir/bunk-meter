@@ -1,5 +1,6 @@
 import 'package:bunkmeter/provider/auth.dart';
-import 'package:bunkmeter/screen/addcourse.dart';
+import 'package:bunkmeter/screen/addnewsubject.dart';
+import 'package:bunkmeter/screen/mycourse.dart';
 import 'package:bunkmeter/screen/authscreen.dart';
 import 'package:bunkmeter/screen/days.dart';
 import 'package:flutter/material.dart';
@@ -21,20 +22,20 @@ class MyApp extends StatelessWidget {
                         accentColor: Colors.blue[800],
                         fontFamily: 'Lato',
                       ),
-                      home: auth.isAuth
-                          ? Days()
-                          : FutureBuilder(
-                              future: auth.tryAutoLogin(),
-                              builder: (ctx, authResult) =>
-                                  authResult.connectionState ==
-                                          ConnectionState.waiting
-                                      ? CircularProgressIndicator()
-                                      : AuthScreen(),
-                            ),
+                      home: Days(), //auth.isAuth? Days()
+                      // : FutureBuilder(
+                      //     future: auth.tryAutoLogin(),
+                      //     builder: (ctx, authResult) =>
+                      //         authResult.connectionState ==
+                      //                 ConnectionState.waiting
+                      //             ? CircularProgressIndicator()
+                      //             : AuthScreen(),
+                      //   ),
                       routes: {
                         AuthScreen.routeName: (ctx) => AuthScreen(),
                         Days.routeName: (ctx) => Days(),
                         Courses.routeName: (ctx) => Courses(),
+                        AddSubject.routeName: (ctx) => AddSubject(),
                       },
                     ))));
   }

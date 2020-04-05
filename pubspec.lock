@@ -126,7 +126,7 @@ packages:
       name: flutter_advanced_networkimage
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.4"
+    version: "0.6.2"
   flutter_launcher_icons:
     dependency: "direct dev"
     description:
@@ -140,7 +140,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.17.1"
+    version: "0.15.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -179,6 +179,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.1+1"
+  koukicons:
+    dependency: "direct main"
+    description:
+      name: koukicons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.2"
   matcher:
     dependency: transitive
     description:

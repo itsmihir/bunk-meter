@@ -5,10 +5,11 @@ INJECTED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml:
 INJECTED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml:1:1-30:12
 INJECTED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml:1:1-30:12
 MERGED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml:1:1-30:12
-MERGED from [:firebase_auth] /root/projects/bunkmeter/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:cloud_firestore] /root/projects/bunkmeter/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:firebase_auth] /root/projects/bunkmeter/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core] /root/projects/bunkmeter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-15:12
 MERGED from [:firebase_core_web] /root/projects/bunkmeter/build/firebase_core_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
+MERGED from [:sqflite] /root/projects/bunkmeter/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] /root/projects/bunkmeter/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences_web] /root/projects/bunkmeter/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences_macos] /root/projects/bunkmeter/build/shared_preferences_macos/intermediates/library_manifest/debug/AndroidManifest.xml:2:1-7:12
@@ -131,14 +132,16 @@ uses-sdk
 INJECTED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml
 INJECTED from /root/projects/bunkmeter/android/app/src/main/AndroidManifest.xml
-MERGED from [:firebase_auth] /root/projects/bunkmeter/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
-MERGED from [:firebase_auth] /root/projects/bunkmeter/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] /root/projects/bunkmeter/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:cloud_firestore] /root/projects/bunkmeter/build/cloud_firestore/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] /root/projects/bunkmeter/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:firebase_auth] /root/projects/bunkmeter/build/firebase_auth/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] /root/projects/bunkmeter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core] /root/projects/bunkmeter/build/firebase_core/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core_web] /root/projects/bunkmeter/build/firebase_core_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:firebase_core_web] /root/projects/bunkmeter/build/firebase_core_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /root/projects/bunkmeter/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
+MERGED from [:sqflite] /root/projects/bunkmeter/build/sqflite/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /root/projects/bunkmeter/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] /root/projects/bunkmeter/build/shared_preferences/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_web] /root/projects/bunkmeter/build/shared_preferences_web/intermediates/library_manifest/debug/AndroidManifest.xml:5:5-44
