@@ -3,6 +3,9 @@ import 'package:bunkmeter/screen/addnewsubject.dart';
 import 'package:bunkmeter/screen/mycourse.dart';
 import 'package:bunkmeter/screen/authscreen.dart';
 import 'package:bunkmeter/screen/days.dart';
+import 'package:bunkmeter/screen/notify.dart';
+import 'package:bunkmeter/screen/savetocloud.dart';
+import 'package:bunkmeter/screen/statistics.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -36,6 +39,9 @@ class MyApp extends StatelessWidget {
                         Days.routeName: (ctx) => Days(),
                         Courses.routeName: (ctx) => Courses(),
                         AddSubject.routeName: (ctx) => AddSubject(),
+                        StatisticsScreen.routeName: (ctx) => StatisticsScreen(),
+                        Notify.routeName: (ctx) => Notify(),
+                        SaveTimeTable.routeName: (ctx) => SaveTimeTable(),
                       },
                     ))));
   }

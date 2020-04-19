@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 
 class BottomEdit extends StatefulWidget {
   List<Subject> subject;
+  static int curSub = -1;
+  static int curMode = -1;
+
   BottomEdit(this.subject);
   @override
   _BottomEditState createState() => _BottomEditState();
 }
 
 class _BottomEditState extends State<BottomEdit> {
-  int curSub = -1;
-  int curMode = -1;
-
   List<String> mode = ['Lecture', 'Tutorial', 'Pratical', 'Erase'];
   @override
   Widget build(BuildContext context) {
@@ -33,10 +33,10 @@ class _BottomEditState extends State<BottomEdit> {
                         Container(
                           decoration: BoxDecoration(
                               color: const Color(0xffb1C95FA),
-                              border: i == curSub
+                              border: i == BottomEdit.curSub
                                   ? Border.all(color: Colors.black, width: 3)
                                   : null,
-                              borderRadius: i == curSub
+                              borderRadius: i == BottomEdit.curSub
                                   ? BorderRadius.circular(6)
                                   : null),
                           padding: const EdgeInsets.all(10),
@@ -49,9 +49,9 @@ class _BottomEditState extends State<BottomEdit> {
                             ),
                             onTap: () {
                               setState(() {
-                                curSub = i;
+                                BottomEdit.curSub = i;
                               });
-                              print(curSub);
+                              print(BottomEdit.curSub);
                             },
                           ),
                         ),
@@ -76,10 +76,10 @@ class _BottomEditState extends State<BottomEdit> {
                         Container(
                           decoration: BoxDecoration(
                               color: const Color(0xffb32A0FC),
-                              border: i == curMode
+                              border: i == BottomEdit.curMode
                                   ? Border.all(color: Colors.black, width: 3)
                                   : null,
-                              borderRadius: i == curMode
+                              borderRadius: i == BottomEdit.curMode
                                   ? BorderRadius.circular(6)
                                   : null),
                           padding: const EdgeInsets.all(8),
@@ -92,9 +92,9 @@ class _BottomEditState extends State<BottomEdit> {
                             ),
                             onTap: () {
                               setState(() {
-                                curMode = i;
+                                BottomEdit.curMode = i;
                               });
-                              print(curMode);
+                              print(BottomEdit.curMode);
                             },
                           ),
                         ),

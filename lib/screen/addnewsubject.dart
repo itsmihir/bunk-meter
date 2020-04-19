@@ -147,7 +147,9 @@ class _AddSubjectState extends State<AddSubject> {
                             // focusNode: _descriptionFocusNode,
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              return null;
+                              if (value.isEmpty) {
+                                return 'Please enter a this field';
+                              }
                             },
                             onSaved: (value) {
                               subject.total[0] = int.parse(value);
@@ -166,7 +168,9 @@ class _AddSubjectState extends State<AddSubject> {
                             // focusNode: _descriptionFocusNode,
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              return null;
+                              if (value.isEmpty) {
+                                return 'Please enter a this field';
+                              }
                             },
                             onSaved: (value) {
                               subject.bunks[0] = int.parse(value);
@@ -184,7 +188,9 @@ class _AddSubjectState extends State<AddSubject> {
                             // focusNode: _descriptionFocusNode,
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              return null;
+                              if (value.isEmpty) {
+                                return 'Please enter a this field';
+                              }
                             },
                             onSaved: (value) {
                               subject.total[1] = int.parse(value);
@@ -203,7 +209,9 @@ class _AddSubjectState extends State<AddSubject> {
                             // focusNode: _descriptionFocusNode,
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              return null;
+                              if (value.isEmpty) {
+                                return 'Please enter a this field';
+                              }
                             },
                             onSaved: (value) {
                               subject.bunks[1] = int.parse(value);
@@ -221,7 +229,9 @@ class _AddSubjectState extends State<AddSubject> {
                             // focusNode: _descriptionFocusNode,
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              return null;
+                              if (value.isEmpty) {
+                                return 'Please enter a this field';
+                              }
                             },
                             onSaved: (value) {
                               subject.total[2] = int.parse(value);
@@ -240,7 +250,9 @@ class _AddSubjectState extends State<AddSubject> {
                             // focusNode: _descriptionFocusNode,
                             keyboardType: TextInputType.number,
                             validator: (value) {
-                              return null;
+                              if (value.isEmpty) {
+                                return 'Please enter a this field';
+                              }
                             },
                             onSaved: (value) {
                               subject.bunks[2] = int.parse(value);

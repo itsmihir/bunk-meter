@@ -10,6 +10,12 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class Days extends StatefulWidget {
   static const routeName = '/home';
+  static bool editMode = false;
+  static List<TimeTable> timetable;
+
+  static List<Subject> subject;
+  static bool BunkEditMode = false;
+
   @override
   _DaysState createState() => _DaysState();
 }
@@ -17,11 +23,7 @@ class Days extends StatefulWidget {
 class _DaysState extends State<Days> {
   var today = new DateTime.now();
 
-  List<Subject> subject;
-  List<TimeTable> timetable;
   var dbHelper = DBHelper();
-
-  bool editMode = false;
 
   Widget TabWidget() {
     return DefaultTabController(
@@ -35,7 +37,7 @@ class _DaysState extends State<Days> {
             ),
             actions: <Widget>[
               IconButton(
-                  icon: editMode
+                  icon: Days.editMode
                       ? Icon(
                           MdiIcons.contentSaveSettings,
                           color: Colors.white,
@@ -45,9 +47,13 @@ class _DaysState extends State<Days> {
                           MdiIcons.pen,
                           color: Colors.white,
                         ),
-                  onPressed: () {
+                  onPressed: () async {
+                    if (Days.editMode) {
+                      //      print(Days.timetable[0].lec);
+                      await dbHelper.updatett(Days.timetable);
+                    }
                     setState(() {
-                      editMode = !editMode;
+                      Days.editMode = !Days.editMode;
                     });
                   })
             ],
@@ -77,29 +83,57 @@ class _DaysState extends State<Days> {
           body: TabBarView(
             children: <Widget>[
               TimeTableScreen(
-                timetable: timetable.firstWhere((tt) => tt.day == 'mon'),
-                subject: subject,
+                timetable: Days.timetable.firstWhere((tt) => tt.day == 'mon'),
+                subject: Days.subject,
+                id: 'mon',
               ),
               TimeTableScreen(
-                timetable: timetable.firstWhere((tt) => tt.day == 'tue'),
-                subject: subject,
+                timetable: Days.timetable.firstWhere((tt) => tt.day == 'tue'),
+                subject: Days.subject,
+                id: 'tue',
               ),
               TimeTableScreen(
-                timetable: timetable.firstWhere((tt) => tt.day == 'wed'),
-                subject: subject,
+                timetable: Days.timetable.firstWhere((tt) => tt.day == 'wed'),
+                subject: Days.subject,
+                id: 'wed',
               ),
               TimeTableScreen(
-                timetable: timetable.firstWhere((tt) => tt.day == 'thr'),
-                subject: subject,
+                timetable: Days.timetable.firstWhere((tt) => tt.day == 'thr'),
+                subject: Days.subject,
+                id: 'thr',
               ),
               TimeTableScreen(
-                timetable: timetable.firstWhere((tt) => tt.day == 'fri'),
-                subject: subject,
+                timetable: Days.timetable.firstWhere((tt) => tt.day == 'fri'),
+                subject: Days.subject,
+                id: 'fri',
               ),
             ],
           ),
           drawer: MyDrawer(),
-          bottomSheet: editMode ? BottomEdit(subject) : null,
+          bottomSheet: Days.editMode ? BottomEdit(Days.subject) : null,
+          floatingActionButton: !Days.editMode
+              ? FloatingActionButton(
+                  child: Days.BunkEditMode
+                      ? Text(
+                          'Done',
+                          style: TextStyle(fontFamily: 'Lato'),
+                        )
+                      : Text(
+                          'Bunks\n   +/-',
+                          style: TextStyle(fontFamily: 'Lato'),
+                        ),
+                  onPressed: () {
+                    if (Days.BunkEditMode)
+                      for (int i = 0; i < Days.subject.length; i++)
+                        dbHelper.update(Days.subject[i]);
+                    setState(() {
+                      Days.BunkEditMode = !Days.BunkEditMode;
+                    });
+                  },
+                  backgroundColor: Theme.of(context).primaryColor,
+                )
+              : null,
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         ));
   }
 
@@ -109,12 +143,13 @@ class _DaysState extends State<Days> {
       future: dbHelper.getSubject(),
       builder: (ctx, sub) {
         if (sub.hasData) {
-          subject = sub.data;
+          Days.subject = sub.data;
           return FutureBuilder(
             future: dbHelper.gettimetable(),
             builder: (ctx, tt) {
               if (tt.hasData) {
-                timetable = tt.data;
+                Days.timetable = tt.data;
+                //   print(Days.timetable[0].lec);
                 return TabWidget();
               }
               return Center(child: CircularProgressIndicator());

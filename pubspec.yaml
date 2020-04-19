@@ -30,6 +30,8 @@ dependencies:
   shared_preferences: ^0.5.4+8
   flutter_advanced_networkimage: any
   material_design_icons_flutter: 3.4.4795
+  flutter_local_notifications:
+  datetime_picker_formfield:
 
 
 

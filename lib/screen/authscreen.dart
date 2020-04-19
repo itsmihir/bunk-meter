@@ -1,4 +1,5 @@
 import 'package:bunkmeter/models/enum.dart';
+import 'package:bunkmeter/screen/drawer.dart';
 import '../widget/alert/alert_dialog.dart';
 import '../widget/circular_image_view.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -10,14 +11,24 @@ enum AuthMode { Signup, Login }
 
 class AuthScreen extends StatelessWidget {
   static const routeName = '/auth';
-
+  int from;
+  AuthScreen({this.from});
   @override
   Widget build(BuildContext context) {
+    final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+    if (arguments != null) {
+      from = arguments['from'];
+    }
     final deviceSize = MediaQuery.of(context).size;
     // final transformConfig = Matrix4.rotationZ(-8 * pi / 180);
     // transformConfig.translate(-10.0);
     return Scaffold(
-      // resizeToAvoidBottomInset: false,
+      appBar: (from == 1)
+          ? AppBar(
+              title: Text('BUNK-METER LOGIN'),
+            )
+          : null,
+      drawer: (from == 1) ? MyDrawer() : null,
       body: Stack(
         children: <Widget>[
           Container(
@@ -35,7 +46,7 @@ class AuthScreen extends StatelessWidget {
           ),
           SingleChildScrollView(
             child: Container(
-              height: deviceSize.height,
+              height: deviceSize.height * 0.8,
               width: deviceSize.width,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -51,7 +62,19 @@ class AuthScreen extends StatelessWidget {
                           fontFamily: 'OpenSans',
                         ),
                       )),
-                  Padding(padding: EdgeInsets.all(10), child: AuthCard())
+                  if (from == 0)
+                    Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          'You Need to Login To Access This Feature',
+                          style: TextStyle(
+                            color: Color(0xfff3f5ff),
+                            fontSize: 16,
+                            fontFamily: 'OpenSans',
+                          ),
+                        )),
+                  Padding(
+                      padding: EdgeInsets.all(10), child: AuthCard(from: from))
                 ],
               ),
             ),
@@ -63,9 +86,8 @@ class AuthScreen extends StatelessWidget {
 }
 
 class AuthCard extends StatefulWidget {
-  const AuthCard({
-    Key key,
-  }) : super(key: key);
+  var from;
+  AuthCard({this.from});
 
   @override
   _AuthCardState createState() => _AuthCardState();
@@ -73,11 +95,14 @@ class AuthCard extends StatefulWidget {
 
 class _AuthCardState extends State<AuthCard> {
   final GlobalKey<FormState> _formKey = GlobalKey();
+
   AuthMode _authMode = AuthMode.Login;
+
   Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
+
   var _isLoading = false;
 
   void _showErrorDialog(String message) {
@@ -119,13 +144,21 @@ class _AuthCardState extends State<AuthCard> {
         message = 'Your password is too weak!\nPlease check your password.';
       }
       _showErrorDialog(message);
+
+      setState(() {
+        _isLoading = false;
+      });
+      return;
     } catch (error) {
       var message = 'Oops...An error occured!\nPlease try again later.';
       _showErrorDialog(message);
+
+      setState(() {
+        _isLoading = false;
+      });
+      return;
     }
-    setState(() {
-      _isLoading = false;
-    });
+    if (widget.from == 1) Navigator.of(context).pop();
   }
 
   void _switchAuthMode() {

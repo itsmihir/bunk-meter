@@ -15,11 +15,6 @@ class DBHelper {
 
   static const String DAY = 'day';
   static const String TABLETT = 'TIMETABLE';
-  static const String MON = 'mon';
-  static const String TUE = 'tue';
-  static const String WED = 'wed';
-  static const String THR = 'thr';
-  static const String FRI = 'fri';
 
   static const String bunkLec = 'bunksLec';
   static const String bunkTut = 'bunksTut';
@@ -56,7 +51,6 @@ class DBHelper {
   _onCreatett(Database db, int version) async {
     await db.execute(
         "CREATE TABLE $TABLETT ($DAY STRING PRIMARY KEY , 'a' TEXT,'b' TEXT,'c' TEXT,'d' TEXT,'e' TEXT,'f' TEXT,'g' TEXT,'h' TEXT)");
-
     var genesis = [
       {
         'day': 'mon',
@@ -162,6 +156,7 @@ class DBHelper {
         tt.add(TimeTable.fromMap(maps[i]));
       }
     }
+    print(tt[0].lec);
     return tt;
   }
 
@@ -184,10 +179,20 @@ class DBHelper {
         where: '$ID = ?', whereArgs: [subject.id]);
   }
 
-  Future<int> updatett(TimeTable tt) async {
+  Future<void> updatett(List<TimeTable> tt) async {
     var dbClient = await db;
-    return await dbClient
-        .update(TABLETT, tt.toMap(), where: '$ID = ?', whereArgs: [tt.day]);
+    print(tt[0].lec);
+    for (int i = 0; i < tt.length; i++) {
+      try {
+        await dbClient.update(TABLETT, tt[i].toMap(),
+            where: '$DAY = ?', whereArgs: [tt[i].day]).then((ok) {
+          print('updated');
+        });
+      } catch (e) {
+        print('here');
+        print(e);
+      }
+    }
   }
 
   Future close() async {

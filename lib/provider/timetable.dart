@@ -7,27 +7,27 @@ class TimeTable {
   Map<String, dynamic> toMap() {
     return {
       'day': day,
-      '1': lec[0],
-      '2': lec[1],
-      '3': lec[2],
-      '4': lec[3],
-      '5': lec[4],
-      '6': lec[5],
-      '7': lec[6],
-      '8': lec[7],
+      'a': lec[0],
+      'b': lec[1],
+      'c': lec[2],
+      'd': lec[3],
+      'e': lec[4],
+      'f': lec[5],
+      'g': lec[6],
+      'h': lec[7],
     };
   }
 
   static TimeTable fromMap(Map<String, dynamic> map) {
     return TimeTable(day: map['day'].toString(), lec: [
-      map['1'].toString(),
-      map['2'].toString(),
-      map['3'].toString(),
-      map['4'].toString(),
-      map['5'].toString(),
-      map['6'].toString(),
-      map['7'].toString(),
-      map['8'].toString(),
+      map['a'].toString(),
+      map['b'].toString(),
+      map['c'].toString(),
+      map['d'].toString(),
+      map['e'].toString(),
+      map['f'].toString(),
+      map['g'].toString(),
+      map['h'].toString(),
     ]);
   }
 }
