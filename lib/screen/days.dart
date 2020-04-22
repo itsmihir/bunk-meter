@@ -22,8 +22,23 @@ class Days extends StatefulWidget {
 
 class _DaysState extends State<Days> {
   var today = new DateTime.now();
-
   var dbHelper = DBHelper();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void didChangeDependencies() async {
+    try {
+      Days.subject = await dbHelper.getSubject();
+      Days.timetable = await dbHelper.gettimetable();
+      setState(() {});
+    } catch (e) {
+      print(e);
+    }
+    super.didChangeDependencies();
+  }
 
   Widget TabWidget() {
     return DefaultTabController(
@@ -80,36 +95,45 @@ class _DaysState extends State<Days> {
               ],
             ),
           ),
-          body: TabBarView(
-            children: <Widget>[
-              TimeTableScreen(
-                timetable: Days.timetable.firstWhere((tt) => tt.day == 'mon'),
-                subject: Days.subject,
-                id: 'mon',
-              ),
-              TimeTableScreen(
-                timetable: Days.timetable.firstWhere((tt) => tt.day == 'tue'),
-                subject: Days.subject,
-                id: 'tue',
-              ),
-              TimeTableScreen(
-                timetable: Days.timetable.firstWhere((tt) => tt.day == 'wed'),
-                subject: Days.subject,
-                id: 'wed',
-              ),
-              TimeTableScreen(
-                timetable: Days.timetable.firstWhere((tt) => tt.day == 'thr'),
-                subject: Days.subject,
-                id: 'thr',
-              ),
-              TimeTableScreen(
-                timetable: Days.timetable.firstWhere((tt) => tt.day == 'fri'),
-                subject: Days.subject,
-                id: 'fri',
-              ),
-            ],
-          ),
-          drawer: MyDrawer(),
+          body: Days.timetable == null
+              ? Center(
+                  child: CircularProgressIndicator(),
+                )
+              : TabBarView(
+                  children: <Widget>[
+                    TimeTableScreen(
+                      timetable:
+                          Days.timetable.firstWhere((tt) => tt.day == 'mon'),
+                      subject: Days.subject,
+                      id: 'mon',
+                    ),
+                    TimeTableScreen(
+                      timetable:
+                          Days.timetable.firstWhere((tt) => tt.day == 'tue'),
+                      subject: Days.subject,
+                      id: 'tue',
+                    ),
+                    TimeTableScreen(
+                      timetable:
+                          Days.timetable.firstWhere((tt) => tt.day == 'wed'),
+                      subject: Days.subject,
+                      id: 'wed',
+                    ),
+                    TimeTableScreen(
+                      timetable:
+                          Days.timetable.firstWhere((tt) => tt.day == 'thr'),
+                      subject: Days.subject,
+                      id: 'thr',
+                    ),
+                    TimeTableScreen(
+                      timetable:
+                          Days.timetable.firstWhere((tt) => tt.day == 'fri'),
+                      subject: Days.subject,
+                      id: 'fri',
+                    ),
+                  ],
+                ),
+          drawer: Days.timetable == null ? null : MyDrawer(),
           bottomSheet: Days.editMode ? BottomEdit(Days.subject) : null,
           floatingActionButton: !Days.editMode
               ? FloatingActionButton(
@@ -139,24 +163,10 @@ class _DaysState extends State<Days> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: dbHelper.getSubject(),
-      builder: (ctx, sub) {
-        if (sub.hasData) {
-          Days.subject = sub.data;
-          return FutureBuilder(
-            future: dbHelper.gettimetable(),
-            builder: (ctx, tt) {
-              if (tt.hasData) {
-                Days.timetable = tt.data;
-                return TabWidget();
-              }
-              return Center(child: CircularProgressIndicator());
-            },
-          );
-        }
-        return Center(child: CircularProgressIndicator());
-      },
-    );
+    return (Days.timetable == null || Days.subject == null)
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : TabWidget();
   }
 }

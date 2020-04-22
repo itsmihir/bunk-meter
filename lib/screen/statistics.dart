@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:bunkmeter/provider/database.dart';
 import 'package:bunkmeter/provider/subject.dart';
 import 'package:bunkmeter/widget/stat_widget.dart';

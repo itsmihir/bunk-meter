@@ -4,8 +4,6 @@ import 'package:bunkmeter/provider/subject.dart';
 import 'package:bunkmeter/screen/addnewsubject.dart';
 import 'package:bunkmeter/widget/alert/confirm_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:koukicons/deleteDatabase.dart';
-import 'package:koukicons/edit.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Courses extends StatefulWidget {

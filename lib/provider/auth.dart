@@ -9,6 +9,7 @@ class Auth with ChangeNotifier {
   String _token;
   DateTime _expiryDate;
   String _userId;
+  String _email;
   Timer _authTimer;
   bool get isAuth {
     return token != null;
@@ -27,6 +28,10 @@ class Auth with ChangeNotifier {
     return _userId;
   }
 
+  String get emailId {
+    return _email;
+  }
+
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
     final url =
@@ -43,6 +48,7 @@ class Auth with ChangeNotifier {
       if (resData['error'] != null) {
         throw HttpException(resData['error']['message']);
       }
+      _email = email;
       _token = resData['idToken'];
       _userId = resData['localId'];
       _expiryDate = DateTime.now()
@@ -52,6 +58,7 @@ class Auth with ChangeNotifier {
       notifyListeners();
       final prefs = await SharedPreferences.getInstance();
       final userData = json.encode({
+        'email': email,
         'token': _token,
         'userId': _userId,
         'expiryDate': _expiryDate.toIso8601String()
@@ -75,6 +82,7 @@ class Auth with ChangeNotifier {
     }
 
     _token = eUserData['token'];
+    _email = eUserData['email'];
     _userId = eUserData['userId'];
     _expiryDate = expiryDate;
 
@@ -95,6 +103,7 @@ class Auth with ChangeNotifier {
     _token = null;
     _userId = null;
     _expiryDate = null;
+    _email = null;
     if (_authTimer != null) {
       _authTimer.cancel();
       _authTimer = null;

@@ -43,7 +43,6 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
                   icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
                   onPressed: () {
                     setState(() {
-                      print(widget.subject);
                       _expanded = !_expanded;
                     });
                   },

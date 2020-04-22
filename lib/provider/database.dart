@@ -1,12 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:io' as io;
-import 'dart:io';
+import 'package:bunkmeter/models/http_exceptions.dart';
 import 'package:dio/dio.dart';
-
+import 'package:workmanager/workmanager.dart';
 import './timetable.dart';
 import 'package:http/http.dart' as http;
-import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -41,17 +40,22 @@ class DBHelper {
   }
 
   initDb() async {
-    io.Directory documentsDirectory = await getApplicationDocumentsDirectory();
-    String path = join(documentsDirectory.path, DB_NAME);
-    var db = await openDatabase(path, version: 1, onCreate: _onCreate);
+    try {
+      io.Directory documentsDirectory =
+          await getApplicationDocumentsDirectory();
+      String path = join(documentsDirectory.path, DB_NAME);
+      var db = await openDatabase(path, version: 1, onCreate: _onCreate);
 
-    return db;
+      return db;
+    } catch (e) {
+      print(e);
+    }
   }
 
   _onCreate(Database db, int version) async {
     await db.execute(
         "CREATE TABLE $TABLE ($ID STRING PRIMARY KEY, $SUBJECT TEXT, $bunkLec INTEGER, $bunkTut INTEGER, $bunkPra INTEGER,  $totalLec INTEGER, $totalTut INTEGER, $totalPra INTEGER)");
-    _onCreatett(db, version);
+    await _onCreatett(db, version);
   }
 
   _onCreatett(Database db, int version) async {
@@ -139,7 +143,6 @@ class DBHelper {
 
   Future<List<Subject>> getSubject() async {
     var dbClient = await db;
-    // List<Map> maps = await dbClient.query(TABLE, columns: [ID]);
     List<Map> maps = await dbClient.rawQuery("SELECT * FROM $TABLE");
     List<Subject> subjects = [];
 
@@ -148,7 +151,6 @@ class DBHelper {
         subjects.add(Subject.fromMap(maps[i]));
       }
     }
-    print(subjects.length);
 
     return subjects;
   }
@@ -192,6 +194,12 @@ class DBHelper {
     }
   }
 
+  Future<void> deleteAll() async {
+    var dbClient = await db;
+
+    await dbClient.rawQuery("DELETE FROM $TABLE");
+  }
+
   Future<int> update(Subject subject) async {
     var dbClient = await db;
     return await dbClient.update(TABLE, subject.toMap(),
@@ -219,22 +227,55 @@ class DBHelper {
 
 // decentralized data storage
 
-  Future<void> SaveToJSONFile(String fileName) async {
+  Future<void> saveToJSONFile(String fileName) async {
     print('Writing from Blockchain...');
     var dbClient = await db;
     final url = 'https://kfs4.moibit.io/moibit/v0/writefile';
-    List<Map> fileContent = await dbClient.rawQuery("SELECT * FROM $TABLETT");
     try {
-      Directory dir = await getTemporaryDirectory();
-      File file = new File(dir.path + '/' + fileName);
-      file.createSync();
-      file.writeAsStringSync(json.encode(fileContent));
+      List<Map> timetableFile =
+          await dbClient.rawQuery("SELECT * FROM $TABLETT");
+      List<Map> subjectFile = await dbClient.rawQuery("SELECT * FROM $TABLE");
+      // print(subjectFile);
+      // if (subjectFile.length > 0) {
+      //   for (int i = 0; i < subjectFile.length; i++) {
+      //     print(subjectFile[i]);
+      //     subjectFile[i] = Subject.clearCount(subjectFile[i]);
+      //   }
+      // }
+      io.Directory dir = await getTemporaryDirectory();
+      io.File filett = new io.File(dir.path + '/' + 'tt' + fileName);
+      io.File filesub = new io.File(dir.path + '/' + 'sub' + fileName);
+      filett.createSync();
+      filett.writeAsStringSync(json.encode(timetableFile));
+      filesub.writeAsStringSync(json.encode(subjectFile));
       Dio dio = new Dio();
-      FormData formdata = new FormData(); // just like JS
+      // FormData formdata = new FormData(); // just like JS
       FormData formData = FormData.fromMap({
-        "file": await MultipartFile.fromFile(file.path, filename: fileName)
+        "file":
+            await MultipartFile.fromFile(filett.path, filename: 'tt' + fileName)
       });
       var response = await dio.post(
+        url,
+        data: formData,
+        options: Options(
+            headers: {
+              "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+              "api_secret":
+                  "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status < 500;
+            }),
+      );
+      print(response);
+
+      // Add Subject file
+      formData = FormData.fromMap({
+        "file": await MultipartFile.fromFile(filesub.path,
+            filename: 'sub' + fileName)
+      });
+      response = await dio.post(
         url,
         data: formData,
         options: Options(
@@ -254,7 +295,7 @@ class DBHelper {
     }
   }
 
-  Future<void> DeleteFromServer(String fileName) async {
+  Future<void> deleteFromServer(String fileName) async {
     final url = 'https://kfs4.moibit.io/moibit/v0/remove';
     print('Deleteing from Blockchain...');
     try {
@@ -264,10 +305,73 @@ class DBHelper {
             "api_secret":
                 "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
           },
-          body: json.encode({"path": fileName}));
+          body: json.encode({"path": 'tt' + fileName}));
       print(res.body);
+      //Delete Subject File
+      final res1 = await http.post(url,
+          headers: {
+            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_secret":
+                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+          },
+          body: json.encode({"path": 'sub' + fileName}));
+      print(res1.body);
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<void> downloadTimeTable(String key) async {
+    final url = 'https://kfs4.moibit.io/moibit/v0/readfile';
+    print('Downloading from Blockchain...');
+    try {
+      final res = await http.post(url,
+          headers: {
+            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_secret":
+                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+          },
+          body: json.encode({"fileName": 'tt' + key}));
+      var map = json.decode(res.body);
+      print(map);
+      if (map["meta"]["message"].toString().contains("failed"))
+        throw HttpException(map["data"]);
+      List<TimeTable> tt = [];
+      for (int i = 0; i < map.length; i++) {
+        tt.add(TimeTable.fromMap(map[i]));
+      }
+      await this.updatett(tt);
+
+      final res1 = await http.post(url,
+          headers: {
+            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_secret":
+                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+          },
+          body: json.encode({"fileName": 'sub' + key}));
+      map = json.decode(res1.body);
+      if (map["meta"]["message"].toString().contains("failed"))
+        throw HttpException(map["data"]);
+      List<Subject> sub = [];
+      print(map);
+      await this.deleteAll();
+      for (int i = 0; i < map.length; i++) {
+        sub.add(Subject.fromMap(map[i]));
+        print(sub[i]);
+        await this.save(sub[i]);
+      }
+    } catch (e) {
+      print(e);
+      throw HttpException(e.toString());
+    }
+  }
+
+  // Auto update Bunk Count
+  void callbackDispatcher() {
+    Workmanager.executeTask((task, inputData) {
+      print(
+          "Native called background task: "); //simpleTask will be emitted here.
+      return Future.value(true);
+    });
   }
 }

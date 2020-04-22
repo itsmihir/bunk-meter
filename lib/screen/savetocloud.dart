@@ -1,17 +1,11 @@
 import 'dart:convert';
-
 import 'package:bunkmeter/provider/auth.dart';
 import 'package:bunkmeter/provider/database.dart';
-import 'package:bunkmeter/provider/dstorage.dart';
 import 'package:bunkmeter/provider/timetable.dart';
 import 'package:bunkmeter/screen/authscreen.dart';
-import 'package:bunkmeter/screen/days.dart';
 import 'package:bunkmeter/widget/alert/alert_dialog.dart';
 import 'package:bunkmeter/widget/copytextbutton.dart';
-import 'package:flutter/services.dart';
 import 'package:random_string/random_string.dart';
-import 'dart:math' show Random;
-import 'package:bunkmeter/screen/drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -35,21 +29,21 @@ class _SaveTimeTableState extends State<SaveTimeTable> {
         Padding(
           padding: const EdgeInsets.fromLTRB(25, 17, 25, 17),
           child: Text(
-            "You Can Also Share Your Time Table With \n Your Friends",
+            "You Can Also Share Your Time Table With \n Your Friends.",
             style: TextStyle(fontFamily: 'Lato', fontSize: 17),
           ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(25, 17, 25, 17),
           child: Text(
-            "Just Send Time table KEY To Your Friend and Ask Him/Her to Apply That KEY in Download Time Table Section",
+            "Just Send Time table KEY To Your Friend And Ask Him/Her To Apply That KEY In \"Download Time Table\" Section.",
             style: TextStyle(fontFamily: 'Lato', fontSize: 17),
           ),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(25, 17, 25, 17),
           child: Text(
-            "Don't Worry Your Bunk Count Will NOT be Shared",
+            "Don't Worry Your Bunk Count Will NOT Be Shared And Data Will Be Stored In Decentralized Network!",
             style:
                 TextStyle(fontFamily: 'Lato', fontSize: 17, color: Colors.red),
           ),
@@ -69,12 +63,12 @@ class _SaveTimeTableState extends State<SaveTimeTable> {
                 if (prefs.containsKey('filekey')) {
                   final key = json.decode(prefs.getString('filekey'))
                       as Map<String, dynamic>;
-                  await db.DeleteFromServer(key['key'] + '.json');
+                  await db.deleteFromServer(key['key'] + '.json');
                 }
                 final key = json.encode({'key': fileName});
                 prefs.setString('filekey', key);
 
-                await db.SaveToJSONFile(fileName + '.json');
+                await db.saveToJSONFile(fileName + '.json');
                 setState(() {
                   isloading = false;
                 });

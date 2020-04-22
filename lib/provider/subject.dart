@@ -31,4 +31,14 @@ class Subject {
       ],
     );
   }
+
+  static Map<String, dynamic> clearCount(Map<String, dynamic> map) {
+    map['bunksLec'] = 0;
+    map['bunksTut'] = 0;
+    map['bunksPra'] = 0;
+    map['totalLec'] = 0;
+    map['totalTut'] = 0;
+    map['totalPra'] = 0;
+    return map;
+  }
 }
