@@ -259,9 +259,9 @@ class DBHelper {
         data: formData,
         options: Options(
             headers: {
-              "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+              "api_key": "",
               "api_secret":
-                  "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+                  "",
             },
             followRedirects: false,
             validateStatus: (status) {
@@ -280,9 +280,9 @@ class DBHelper {
         data: formData,
         options: Options(
             headers: {
-              "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
-              "api_secret":
-                  "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+              "api_key": "",
+              "api_secret
+                  "",
             },
             followRedirects: false,
             validateStatus: (status) {
@@ -301,18 +301,18 @@ class DBHelper {
     try {
       final res = await http.post(url,
           headers: {
-            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_key": "",
             "api_secret":
-                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+                "",
           },
           body: json.encode({"path": 'tt' + fileName}));
       print(res.body);
       //Delete Subject File
       final res1 = await http.post(url,
           headers: {
-            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_key": "",
             "api_secret":
-                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+                "",
           },
           body: json.encode({"path": 'sub' + fileName}));
       print(res1.body);
@@ -327,9 +327,9 @@ class DBHelper {
     try {
       final res = await http.post(url,
           headers: {
-            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_key": "",
             "api_secret":
-                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+                "",
           },
           body: json.encode({"fileName": 'tt' + key}));
       var map = json.decode(res.body);
@@ -344,9 +344,9 @@ class DBHelper {
 
       final res1 = await http.post(url,
           headers: {
-            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_key": "",
             "api_secret":
-                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+                "",
           },
           body: json.encode({"fileName": 'sub' + key}));
       map = json.decode(res1.body);
