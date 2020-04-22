@@ -149,7 +149,6 @@ class _DaysState extends State<Days> {
             builder: (ctx, tt) {
               if (tt.hasData) {
                 Days.timetable = tt.data;
-                //   print(Days.timetable[0].lec);
                 return TabWidget();
               }
               return Center(child: CircularProgressIndicator());

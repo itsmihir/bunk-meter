@@ -1,6 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io' as io;
+import 'dart:io';
+import 'package:dio/dio.dart';
+
 import './timetable.dart';
+import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart';
@@ -142,7 +148,8 @@ class DBHelper {
         subjects.add(Subject.fromMap(maps[i]));
       }
     }
-    cache = subjects;
+    print(subjects.length);
+
     return subjects;
   }
 
@@ -156,7 +163,6 @@ class DBHelper {
         tt.add(TimeTable.fromMap(maps[i]));
       }
     }
-    print(tt[0].lec);
     return tt;
   }
 
@@ -168,9 +174,22 @@ class DBHelper {
     return (Subject.fromMap(maps[0]));
   }
 
-  Future<int> delete(String id) async {
+  Future<void> delete(String id) async {
     var dbClient = await db;
-    return await dbClient.delete(TABLE, where: '$ID = ?', whereArgs: [id]);
+    try {
+      List<TimeTable> tt = await this.gettimetable();
+      for (int i = 0; i < tt.length; i++) {
+        for (int j = 0; j < tt[i].lec.length; j++) {
+          if (tt[i].lec[j] == '0' + id ||
+              tt[i].lec[j] == '1' + id ||
+              tt[i].lec[j] == '2' + id) tt[i].lec[j] = 'null';
+        }
+      }
+      await dbClient.delete(TABLE, where: '$ID = ?', whereArgs: [id]);
+      await this.updatett(tt);
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<int> update(Subject subject) async {
@@ -181,7 +200,6 @@ class DBHelper {
 
   Future<void> updatett(List<TimeTable> tt) async {
     var dbClient = await db;
-    print(tt[0].lec);
     for (int i = 0; i < tt.length; i++) {
       try {
         await dbClient.update(TABLETT, tt[i].toMap(),
@@ -189,7 +207,6 @@ class DBHelper {
           print('updated');
         });
       } catch (e) {
-        print('here');
         print(e);
       }
     }
@@ -198,5 +215,59 @@ class DBHelper {
   Future close() async {
     var dbClient = await db;
     dbClient.close();
+  }
+
+// decentralized data storage
+
+  Future<void> SaveToJSONFile(String fileName) async {
+    print('Writing from Blockchain...');
+    var dbClient = await db;
+    final url = 'https://kfs4.moibit.io/moibit/v0/writefile';
+    List<Map> fileContent = await dbClient.rawQuery("SELECT * FROM $TABLETT");
+    try {
+      Directory dir = await getTemporaryDirectory();
+      File file = new File(dir.path + '/' + fileName);
+      file.createSync();
+      file.writeAsStringSync(json.encode(fileContent));
+      Dio dio = new Dio();
+      FormData formdata = new FormData(); // just like JS
+      FormData formData = FormData.fromMap({
+        "file": await MultipartFile.fromFile(file.path, filename: fileName)
+      });
+      var response = await dio.post(
+        url,
+        data: formData,
+        options: Options(
+            headers: {
+              "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+              "api_secret":
+                  "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+            },
+            followRedirects: false,
+            validateStatus: (status) {
+              return status < 500;
+            }),
+      );
+      print(response);
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future<void> DeleteFromServer(String fileName) async {
+    final url = 'https://kfs4.moibit.io/moibit/v0/remove';
+    print('Deleteing from Blockchain...');
+    try {
+      final res = await http.post(url,
+          headers: {
+            "api_key": "12D3KooWJn8t1aFq8WjYiHCshBAwvDQH8wDFY5Y2Ue2ZPna89Zgb",
+            "api_secret":
+                "080112407b10de977fde0a6dca066d04a40dff20ebf89b37f88ca9555d46f6e478a1f1d18526fecf3b4addea43ee4ae51248c1bdb0f9c8507e696d56ee55926f384dfa08",
+          },
+          body: json.encode({"path": fileName}));
+      print(res.body);
+    } catch (e) {
+      print(e);
+    }
   }
 }

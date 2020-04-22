@@ -76,11 +76,11 @@ class _NotifyState extends State<Notify> {
               child: CircularProgressIndicator(),
             )
           : Padding(
-              padding: const EdgeInsets.all(15.0),
+              padding: const EdgeInsets.fromLTRB(25, 100, 25, 5),
               child: Column(children: <Widget>[
                 Text(
-                  'We Will Remind You To Update Bunk Count Please Select Suitable You Want To Get Notify',
-                  style: TextStyle(fontSize: 17, fontFamily: 'OpenSans'),
+                  'We Will Remind You To Update Bunk Count Please Select Suitable Time You Want To Get Notify Daily',
+                  style: TextStyle(fontFamily: 'OpenSans', fontSize: 18),
                 ),
                 SizedBox(
                   height: 60,

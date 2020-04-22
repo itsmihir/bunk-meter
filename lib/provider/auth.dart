@@ -103,10 +103,4 @@ class Auth with ChangeNotifier {
     final prefs = await SharedPreferences.getInstance();
     prefs.clear();
   }
-
-  // void _autologOut() {
-  //   if (_authTimer != null) _authTimer.cancel();
-  //   final timeToExpiry = _expiryDate.difference(DateTime.now()).inSeconds;
-  //   _authTimer = Timer(Duration(seconds: timeToExpiry), logOut);
-  // }
 }

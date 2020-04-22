@@ -5,6 +5,7 @@ import 'package:bunkmeter/screen/mycourse.dart';
 import 'package:bunkmeter/screen/notify.dart';
 import 'package:bunkmeter/screen/savetocloud.dart';
 import 'package:bunkmeter/screen/statistics.dart';
+import 'package:bunkmeter/widget/alert/alert_dialog.dart';
 import 'package:bunkmeter/widget/alert/confirm_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -84,7 +85,15 @@ class MyDrawer extends StatelessWidget {
           ),
           title: Text('Download Timetable',
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          onTap: () {},
+          onTap: () async {
+            await showDialog(
+                context: context,
+                builder: (ctx) => CustomAlertDialog(
+                      title: 'Download TimeTable',
+                      message:
+                          'Alert:Downloading TimeTable will Delete Your Current Saved TimeTable and Subjects!!',
+                    ));
+          },
         ),
         ListTile(
           leading: Icon(

@@ -17,7 +17,7 @@ class Courses extends StatefulWidget {
 
 class _CoursesState extends State<Courses> {
   var dbHelper = DBHelper();
-
+  bool isLoading = false;
   Future<List<Subject>> subject;
 
   list() {
@@ -27,16 +27,7 @@ class _CoursesState extends State<Courses> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return dataTable(snapshot.data);
-            //     FutureBuilder(
-            //   future: dbHelper.gettimetable(),
-            //   builder: (ctx, sn) {
-            //     if (sn.hasData) {
-            //       return dataTable(snapshot.data);
-            //     }
-            //   },
-            // );
           }
-
           if (snapshot.connectionState == ConnectionState.done &&
               snapshot.data == null) {
             return Center(child: Text("No Courses Found"));
@@ -93,10 +84,20 @@ class _CoursesState extends State<Courses> {
                                       title: 'Delete Course!!',
                                       message:
                                           'Are You Sure You Want to Delete the Course ?',
-                                    )).then((result) {
+                                    )).then((result) async {
                               if (result == ConfirmAction.YES) {
                                 setState(() {
-                                  dbHelper.delete(subjects[ind].id);
+                                  isLoading = true;
+                                });
+                                await dbHelper
+                                    .delete(subjects[ind].id)
+                                    .then((d) {
+                                  print('done');
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                }).catchError((e) {
+                                  print(e);
                                 });
                               }
                             });
@@ -125,7 +126,7 @@ class _CoursesState extends State<Courses> {
               })
         ],
       ),
-      body: list(),
+      body: isLoading ? Center(child: CircularProgressIndicator()) : list(),
     );
   }
 }

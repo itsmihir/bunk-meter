@@ -19,21 +19,13 @@ class MyApp extends StatelessWidget {
         child: MaterialApp(
             home: Consumer<Auth>(
                 builder: (ctx, auth, _) => MaterialApp(
-                      title: 'MyShop',
+                      title: 'Bunk-Meter',
                       theme: ThemeData(
                         primaryColor: Colors.blue,
                         accentColor: Colors.blue[800],
                         fontFamily: 'Lato',
                       ),
-                      home: Days(), //auth.isAuth? Days()
-                      // : FutureBuilder(
-                      //     future: auth.tryAutoLogin(),
-                      //     builder: (ctx, authResult) =>
-                      //         authResult.connectionState ==
-                      //                 ConnectionState.waiting
-                      //             ? CircularProgressIndicator()
-                      //             : AuthScreen(),
-                      //   ),
+                      home: Days(),
                       routes: {
                         AuthScreen.routeName: (ctx) => AuthScreen(),
                         Days.routeName: (ctx) => Days(),

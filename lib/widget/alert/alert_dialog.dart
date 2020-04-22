@@ -1,10 +1,12 @@
+import 'package:bunkmeter/widget/copytextbutton.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   final String title, message;
+  final Widget widget;
 
-  CustomAlertDialog({this.title, this.message});
+  CustomAlertDialog({this.title, this.message, this.widget});
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -41,6 +43,7 @@ class CustomAlertDialog extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 )),
+            if (widget != null) widget,
             Padding(
                 padding: EdgeInsets.only(top: 20),
                 child: MaterialButton(

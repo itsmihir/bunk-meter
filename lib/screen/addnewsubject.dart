@@ -28,7 +28,7 @@ class _AddSubjectState extends State<AddSubject> {
 
   var dbHelper = DBHelper();
 
-  bool isUpdating;
+  bool isUpdating = false;
 
   validate(context) async {
     if (formKey.currentState.validate()) {

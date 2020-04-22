@@ -29,112 +29,116 @@ class _StatisticsWidgetState extends State<StatisticsWidget> {
   @override
   Widget build(BuildContext context) {
     var media = MediaQuery.of(context).size;
-    return Card(
-      margin: EdgeInsets.all(10),
-      child: Column(
-        children: <Widget>[
-          ListTile(
-            title: Text(widget.subject.subject),
-            subtitle: Text(widget.subject.id),
-            trailing: IconButton(
-              icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
-              onPressed: () {
-                setState(() {
-                  print(widget.subject);
-                  _expanded = !_expanded;
-                });
-              },
-            ),
-          ),
-          if (_expanded)
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-              height: 120,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text(""),
-                        SizedBox(
-                          width: media.width * 0.20,
-                        ),
-                        Text('Bunks/Total'),
-                        SizedBox(
-                          width: media.width * 0.05,
-                        ),
-                        Text("Percentage")
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text("Lecture"),
-                        SizedBox(
-                          width: media.width * 0.10,
-                        ),
-                        Text(widget.subject.bunks[0].toString() +
-                            '/' +
-                            widget.subject.total[0].toString()),
-                        SizedBox(
-                          width: media.width * 0.1,
-                        ),
-                        percentage(
-                            widget.subject.bunks[0], widget.subject.total[0]),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text("Practical"),
-                        SizedBox(
-                          width: media.width * 0.1,
-                        ),
-                        Text(widget.subject.bunks[2].toString() +
-                            '/' +
-                            widget.subject.total[2].toString()),
-                        SizedBox(
-                          width: media.width * 0.1,
-                        ),
-                        percentage(
-                            widget.subject.bunks[2], widget.subject.total[2]),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(3.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Text("Tutorial"),
-                        SizedBox(
-                          width: media.width * 0.1,
-                        ),
-                        Text(widget.subject.bunks[1].toString() +
-                            '/' +
-                            widget.subject.total[1].toString()),
-                        SizedBox(
-                          width: media.width * 0.1,
-                        ),
-                        percentage(
-                            widget.subject.bunks[1], widget.subject.total[1]),
-                      ],
-                    ),
-                  ),
-                ],
+    return AnimatedContainer(
+        duration: Duration(milliseconds: 250),
+        height: _expanded ? 220 : 100,
+        child: Card(
+          margin: EdgeInsets.all(10),
+          child: Column(
+            children: <Widget>[
+              ListTile(
+                title: Text(widget.subject.subject),
+                subtitle: Text(widget.subject.id),
+                trailing: IconButton(
+                  icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
+                  onPressed: () {
+                    setState(() {
+                      print(widget.subject);
+                      _expanded = !_expanded;
+                    });
+                  },
+                ),
               ),
-            )
-        ],
-      ),
-    );
+              AnimatedContainer(
+                  duration: Duration(milliseconds: 250),
+                  padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
+                  height: _expanded ? 100 : 0,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text(""),
+                              SizedBox(
+                                width: media.width * 0.20,
+                              ),
+                              Text('Bunks/Total'),
+                              SizedBox(
+                                width: media.width * 0.05,
+                              ),
+                              Text("Percentage")
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text("Lecture"),
+                              SizedBox(
+                                width: media.width * 0.10,
+                              ),
+                              Text(widget.subject.bunks[0].toString() +
+                                  '/' +
+                                  widget.subject.total[0].toString()),
+                              SizedBox(
+                                width: media.width * 0.1,
+                              ),
+                              percentage(widget.subject.bunks[0],
+                                  widget.subject.total[0]),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text("Practical"),
+                              SizedBox(
+                                width: media.width * 0.1,
+                              ),
+                              Text(widget.subject.bunks[2].toString() +
+                                  '/' +
+                                  widget.subject.total[2].toString()),
+                              SizedBox(
+                                width: media.width * 0.1,
+                              ),
+                              percentage(widget.subject.bunks[2],
+                                  widget.subject.total[2]),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(3.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Text("Tutorial"),
+                              SizedBox(
+                                width: media.width * 0.1,
+                              ),
+                              Text(widget.subject.bunks[1].toString() +
+                                  '/' +
+                                  widget.subject.total[1].toString()),
+                              SizedBox(
+                                width: media.width * 0.1,
+                              ),
+                              percentage(widget.subject.bunks[1],
+                                  widget.subject.total[1]),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ))
+            ],
+          ),
+        ));
   }
 }
