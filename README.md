@@ -1,6 +1,17 @@
-# bunkmeter
+# Bunk-Meter
 
-A new Flutter project.
+Mobile Appication that will keep track on the bunks.
+
+## Features
+
+• View And Edit Your TimeTable
+• Edit Courses
+• Edit Bunks
+• Save Timetable to Decentralized Network
+• Share Your TimeTable With Peers
+• View Bunk Statistics
+• Automatically Incrementing of Daily Lectures
+• Receive Notifications
 
 ## Getting Started
 
@@ -14,4 +25,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
 # bunk-meter
