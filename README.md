@@ -2,7 +2,7 @@
 
 Mobile Appication that will keep track on the bunks.
 
-![Client](./images/1.png)
+![Client](./images/1.png =250*250)
 ![Client](./images/2.png)
 
 ## Features
