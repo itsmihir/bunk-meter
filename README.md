@@ -38,3 +38,7 @@ samples, guidance on mobile development, and a full API reference.
 
 1. Clone the repo `$ git clone https://github.com/itsmihir/bunk-meter.git``
 2. run command "flutter run"
+
+## Authors
+
+- **Mihir Khambhati** - [itsmihir](https://github.com/itsmihir)
