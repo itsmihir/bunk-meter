@@ -8,12 +8,17 @@ Mobile Appication that will keep track on the bunks.
 ### Edit Courses
   <img src="./images/3.png" alt="drawing" width="400"/>        <img src="./images/4.png" alt="drawing" width="400"/>
 ### Edit Bunks
+<img src="./images/8.png" alt="drawing" width="400"/>
 
 ### Save Timetable to Decentralized Network
+<img src="./images/6.png" alt="drawing" width="400"/>
+
 
 ### Share Your TimeTable With Peers
+<img src="./images/7.png" alt="drawing" width="400"/>
 
 ### View Bunk Statistics
+<img src="./images/5.png" alt="drawing" width="400"/>
 
 ### Automatically Incrementing of Daily Lectures
 
