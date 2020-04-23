@@ -4,7 +4,7 @@ Mobile Appication that will keep track on the bunks.
 ## Features
 
 ### View And Edit Your TimeTable
-<img src="./images/1.png" alt="drawing" width="400"/">        <img src="./images/2.png" alt="drawing" width="400"/>     
+<img src="./images/1.png" alt="drawing" width="400"/>        <img src="./images/2.png" alt="drawing" width="400"/>     
 ### Edit Courses
   <img src="./images/3.png" alt="drawing" width="400"/>        <img src="./images/4.png" alt="drawing" width="400"/>
 ### Edit Bunks
@@ -23,6 +23,8 @@ Mobile Appication that will keep track on the bunks.
 ### Automatically Incrementing of Daily Lectures
 
 ### Receive Notifications
+<img src="./images/9.png" alt="drawing" width="400"/>
+
 
 ## Built With
 
