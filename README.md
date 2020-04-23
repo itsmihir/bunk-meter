@@ -1,21 +1,23 @@
 # Bunk-Meter
 
 Mobile Appication that will keep track on the bunks.
-
-  <img src="./images/5.png" alt="drawing" width="400"/>        <img src="./images/6.png" alt="drawing" width="400"/>
-
 ## Features
 
-- View And Edit Your TimeTable
-  <img src="./images/1.png" alt="drawing" width="400"/>        <img src="./images/2.png" alt="drawing" width="400"/>     
-- Edit Courses
+### View And Edit Your TimeTable
+<img src="./images/1.png" alt="drawing" width="400"/>        <img src="./images/2.png" alt="drawing" width="400"/>     
+### Edit Courses
   <img src="./images/3.png" alt="drawing" width="400"/>        <img src="./images/4.png" alt="drawing" width="400"/>
-- Edit Bunks
-- Save Timetable to Decentralized Network
-- Share Your TimeTable With Peers
-- View Bunk Statistics
-- Automatically Incrementing of Daily Lectures
-- Receive Notifications
+### Edit Bunks
+
+### Save Timetable to Decentralized Network
+
+### Share Your TimeTable With Peers
+
+### View Bunk Statistics
+
+### Automatically Incrementing of Daily Lectures
+
+### Receive Notifications
 
 ## Built With
 
