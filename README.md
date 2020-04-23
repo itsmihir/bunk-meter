@@ -2,8 +2,8 @@
 
 Mobile Appication that will keep track on the bunks.
 
-<img src="./images/1.png" alt="drawing" width="200"/>
-![](./images/2.png)
+<img src="./images/1.png" alt="drawing" width="300"/>
+<img src="./images/2.png" alt="drawing" width="300"/>
 
 ## Features
 
