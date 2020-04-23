@@ -4,14 +4,14 @@ Mobile Appication that will keep track on the bunks.
 
 ## Features
 
-• View And Edit Your TimeTable
-• Edit Courses
-• Edit Bunks
-• Save Timetable to Decentralized Network
-• Share Your TimeTable With Peers
-• View Bunk Statistics
-• Automatically Incrementing of Daily Lectures
-• Receive Notifications
+- View And Edit Your TimeTable
+- Edit Courses
+- Edit Bunks
+- Save Timetable to Decentralized Network
+- Share Your TimeTable With Peers
+- View Bunk Statistics
+- Automatically Incrementing of Daily Lectures
+- Receive Notifications
 
 ## Getting Started
 
