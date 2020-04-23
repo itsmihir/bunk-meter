@@ -4,14 +4,18 @@ Mobile Appication that will keep track on the bunks.
 ## Features
 
 ### View And Edit Your TimeTable
+<p align="center">
 <img  align="left" src="./images/1.png" alt="drawing" width="400"/> <img  align="center" src="./images/2.png" alt="drawing" width="400"/>
-</br>
+</p>
 ### Edit Courses
-  <img src="./images/3.png" alt="drawing" width="400"/>        <img align="center" src="./images/4.png" alt="drawing" width="400"/>
+  <p align="center">
+  <img src="./images/3.png" alt="drawing" width="400"/>        <img  src="./images/4.png" alt="drawing" width="400"/>
+</p>
 
 ### Edit Bunks
-<img align="center" src="./images/8.png" alt="drawing" width="400"/>
-
+<p align="center">
+<img  src="./images/8.png" alt="drawing" width="400"/>
+</p>
 ### Save Timetable to Decentralized Network
 <img align="center" src="./images/6.png" alt="drawing" width="400"/>
 
