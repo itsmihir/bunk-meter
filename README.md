@@ -37,6 +37,8 @@ samples, guidance on mobile development, and a full API reference.
 ## Installing
 
 1. Clone the repo `$ git clone https://github.com/itsmihir/bunk-meter.git``
+2. Login to Moibit.io and get API key and paste that key in /provider/database.dart files.
+3. Register app From Firebase.
 2. run command "flutter run"
 
 ## Authors
