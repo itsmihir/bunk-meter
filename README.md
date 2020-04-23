@@ -13,6 +13,13 @@ Mobile Appication that will keep track on the bunks.
 - Automatically Incrementing of Daily Lectures
 - Receive Notifications
 
+## Built With
+
+- [Flutter SDK](https://flutter.dev/) - Mobile App Development kit
+- [MoiBit Decentralized stroage](https://www.moibit.io/?promocode=moibit) - For Decentralized Storage
+- [Firebase](https://firebase.google.com/) - For Authentication 
+- [SQLite Database](https://www.sqlite.org/index.html) - Storing Data Locally
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
@@ -26,4 +33,3 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-# bunk-meter
