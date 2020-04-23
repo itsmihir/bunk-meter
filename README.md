@@ -4,7 +4,7 @@ Mobile Appication that will keep track on the bunks.
 ## Features
 
 ### View And Edit Your TimeTable
-<img  align="left" src="./images/1.png" alt="drawing" width="400"/> <img  align="right" src="./images/2.png" alt="drawing" width="400"/>
+<img  align="left" src="./images/1.png" alt="drawing" width="400"/> <img  align="center" src="./images/2.png" alt="drawing" width="400"/>
 </br>
 ### Edit Courses
   <img src="./images/3.png" alt="drawing" width="400"/>        <img src="./images/4.png" alt="drawing" width="400"/>
