@@ -7,29 +7,44 @@ Mobile Appication that will keep track on the bunks.
 <p align="center">
 <img  align="left" src="./images/1.png" alt="drawing" width="400"/> <img  align="center" src="./images/2.png" alt="drawing" width="400"/>
 </p>
+
 ### Edit Courses
-  <p align="center">
-  <img src="./images/3.png" alt="drawing" width="400"/>        <img  src="./images/4.png" alt="drawing" width="400"/>
+ 
+ <p align="center">
+  <img align="left" src="./images/3.png" alt="drawing" width="400"/>        <img  src="./images/4.png" alt="drawing" width="400"/>
 </p>
 
 ### Edit Bunks
+
 <p align="center">
 <img  src="./images/8.png" alt="drawing" width="400"/>
 </p>
-### Save Timetable to Decentralized Network
-<img align="center" src="./images/6.png" alt="drawing" width="400"/>
 
+### Save Timetable to Decentralized Network
+
+<p align="center">
+<img src="./images/6.png" alt="drawing" width="400"/>
+</p>
 
 ### Share Your TimeTable With Peers
-<img align="center" src="./images/7.png" alt="drawing" width="400"/>
+
+<p align="center">
+<img src="./images/7.png" alt="drawing" width="400"/>
+</p>
 
 ### View Bunk Statistics
-<img align="center" src="./images/5.png" alt="drawing" width="400"/>
 
-### Automatically Incrementing of Daily Lectures
+<p align="center">
+<img src="./images/5.png" alt="drawing" width="400"/>
+</p>
 
 ### Receive Notifications
-<img align="center" src="./images/9.png" alt="drawing" width="400"/>
+
+<p align="center">
+<img src="./images/9.png" alt="drawing" width="400"/>
+</p>
+
+### Automatically Incrementing of Daily Lectures
 
 
 ## Built With
