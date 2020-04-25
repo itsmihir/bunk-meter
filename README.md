@@ -1,6 +1,6 @@
 # Bunk-Meter
 
-Mobile Application that will keep track on the bunks.
+Mobile Application that will keep track of your bunks.
 ## Features
 
 ### View And Edit Your TimeTable
